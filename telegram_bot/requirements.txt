@@ -1,2 +1,2 @@
-python-telegram-bot==20.7
-supabase-py==2.7.1
+python-telegram-bot==22.1
+supabase==2.15.3
