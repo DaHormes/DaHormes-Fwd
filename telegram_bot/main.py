@@ -65,11 +65,23 @@ async def handle_forwarded_message(update: Update, context: ContextTypes.DEFAULT
     user_id = update.effective_user.id
     message = update.message
 
-    if not message or not message.forward_origin or not message.forward_origin.chat:
+    if not message or not message.forward_origin:
         await message.reply_text("Could not detect forwarded chat. Try again.")
         return
 
-    chat_id = message.forward_origin.chat.id
+   
+    # Handle different types of forwarded messages
+    chat_id = None
+    if hasattr(message.forward_origin, "chat"):
+        chat_id = message.forward_origin.chat.id
+    elif hasattr(message.forward_origin, "sender_chat"):
+        chat_id = message.forward_origin.sender_chat.id
+    elif hasattr(message.forward_origin, "sender_user"):
+        chat_id = message.forward_origin.sender_user.id
+
+    if not chat_id:
+        await message.reply_text("Could not detect chat ID. Try forwarding from a group, channel, or private chat.")
+        return
 
     if context.user_data.get("awaiting") == "source":
         supabase.table("user_configs").upsert(

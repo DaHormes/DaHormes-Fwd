@@ -30,8 +30,14 @@ async def fetch_config():
                 if response.data:
                     source_id = response.data[0]["source_id"]
                     destination_id = response.data[0]["destination_id"]
+                    # Verify chat access
+                    try:
+                        await client.get_entity(source_id)
+                        await client.get_entity(destination_id)
+                    except Exception as e:
+                        logging.error(f"Cannot access chat: {e}. Ensure you are a member of both chats. Contact @YourUsername.")
         except Exception as e:
-            logging.error(f"Error fetching config: {e}. Contact @YourUsername for help.")
+            logging.error(f"Error fetching config: {e}. Contact @DaHormes for help.")
         await asyncio.sleep(60)
 
 @client.on(events.NewMessage)
@@ -40,7 +46,7 @@ async def handler(event):
         if source_id and destination_id and event.chat_id == source_id:
             await event.forward_to(destination_id)
     except Exception as e:
-        logging.error(f"Error forwarding: {e}. Contact @YourUsername for help.")
+        logging.error(f"Error forwarding: {e}. Contact @DaHormes for help.")
 
 async def main():
     global user_id
@@ -50,6 +56,8 @@ async def main():
     logging.info("Userbot is running...")
     client.loop.create_task(fetch_config())
     await client.run_until_disconnected()
+    except Exception as e:
+        logging.error(f"Login failed: {e}. Check API_ID and API_HASH. Contact @DaHormes.")
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
