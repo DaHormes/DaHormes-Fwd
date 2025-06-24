@@ -50,12 +50,13 @@ async def handler(event):
 
 async def main():
     global user_id
-    await client.start()
-    user = await client.get_me()
-    user_id = user.id
-    logging.info("Userbot is running...")
-    client.loop.create_task(fetch_config())
-    await client.run_until_disconnected()
+    try:
+        await client.start()
+        user = await client.get_me()
+        user_id = user.id
+        logging.info("Userbot is running...")
+        client.loop.create_task(fetch_config())
+        await client.run_until_disconnected()
     except Exception as e:
         logging.error(f"Login failed: {e}. Check API_ID and API_HASH. Contact @DaHormes.")
 
