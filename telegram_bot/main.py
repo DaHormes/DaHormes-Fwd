@@ -19,7 +19,7 @@ SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [[InlineKeyboardButton("Deploy the Bot", url="https://railway.app/template/your-template")]]
+    keyboard = [[InlineKeyboardButton("Deploy the Bot", url="https://railway.com/deploy/mJILv8?referralCode=cty2K8")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text(
         "👋 Welcome to DahormesForward!\n\nDeploy the bot, then use /setsource and /setdestination to configure.",
