@@ -10,10 +10,9 @@ import os
 from dotenv import load_dotenv
 
 #To pause Service on railway
-if (process.env.PAUSE === "true") {
-  console.log("App is paused.");
-  process.exit(0);
-}
+if os.getenv("PAUSE") == "true":
+    print("🚧 Application is paused. Exiting now.")
+    sys.exit(0)
 
 # Load environment variables
 load_dotenv()
