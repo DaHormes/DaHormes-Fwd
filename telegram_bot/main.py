@@ -18,7 +18,16 @@ from supabase import create_client, Client # Supabase client for database operat
 import os # For accessing environment variables
 from dotenv import load_dotenv # To load environment variables from .env file
 
+<<<<<<< HEAD
 # Load environment variables from the .env file in the current directory
+=======
+#To pause Service on railway
+if os.getenv("PAUSE") == "true":
+    print("🚧 Application is paused. Exiting now.")
+    sys.exit(0)
+
+# Load environment variables
+>>>>>>> 1f3a4119f3f73ee1fc12cc5ed5bc95745363e66e
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 SUPABASE_URL = os.getenv("SUPABASE_URL")

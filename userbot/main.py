@@ -1,5 +1,6 @@
 # userbot/main.py
 
+<<<<<<< HEAD
 from telethon import TelegramClient, events # Import TelegramClient for userbot operations and events for message handling
 from supabase import create_client, Client # Import Supabase client for database interaction
 import asyncio # For asynchronous operations like sleep and creating background tasks
@@ -13,6 +14,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__) # Get a logger instance specific to this module
 
 # Load environment variables from the .env file in the current directory
+=======
+#To pause Service on railway
+if os.getenv("PAUSE") == "true":
+    print("🚧 Application is paused. Exiting now.")
+    sys.exit(0)
+
+# Load environment variables
+>>>>>>> 1f3a4119f3f73ee1fc12cc5ed5bc95745363e66e
 load_dotenv()
 API_ID = int(os.getenv("API_ID")) # Your Telegram API ID (must be an integer)
 API_HASH = os.getenv("API_HASH") # Your Telegram API Hash
@@ -198,5 +207,8 @@ if __name__ == "__main__":
     # The 'with client:' block ensures proper session saving and cleanup when the script exits.
     with client:
         client.loop.run_until_complete(main())
+<<<<<<< HEAD
     logger.info("Userbot stopped.") # This message will appear when the bot is gracefully stopped.
     
+=======
+>>>>>>> 1f3a4119f3f73ee1fc12cc5ed5bc95745363e66e
