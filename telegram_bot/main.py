@@ -17,6 +17,13 @@ from telegram.ext import (
 from supabase import create_client, Client # Supabase client for database operations
 import os # For accessing environment variables
 from dotenv import load_dotenv # To load environment variables from .env file
+import sys # sys import added at the top
+
+#To pause Service on railway
+if os.getenv("PAUSE") == "true":
+    print("🚧 Application is paused. Exiting now.")
+    sys.exit(0)
+
 
 # Load environment variables from the .env file in the current directory
 load_dotenv()
