@@ -18,16 +18,7 @@ from supabase import create_client, Client # Supabase client for database operat
 import os # For accessing environment variables
 from dotenv import load_dotenv # To load environment variables from .env file
 
-<<<<<<< HEAD
 # Load environment variables from the .env file in the current directory
-=======
-#To pause Service on railway
-if os.getenv("PAUSE") == "true":
-    print("🚧 Application is paused. Exiting now.")
-    sys.exit(0)
-
-# Load environment variables
->>>>>>> 1f3a4119f3f73ee1fc12cc5ed5bc95745363e66e
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -44,16 +35,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
     # Create an inline keyboard with a "Deploy the Bot" button.
     # Replace "https://DaHormes-Fwd-Bot" with your actual deployment link if available.
-    keyboard = [[InlineKeyboardButton("Check out DaHormes", url="https://www.dahormes.com")]] 
+    keyboard = [[InlineKeyboardButton("Checkout DaHormes", url="https://www.dahormes,com")]] 
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await update.message.reply_text(
         "👋 Welcome to DahormesForward!\n\n"
-        "Bot deployed, use /setsource and /setdestination to configure.",
+        "Bot deployed, use /setsource, /setdestination and /setmode to configure.",
         reply_markup=reply_markup
     )
-
-
 
 async def set_source(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
