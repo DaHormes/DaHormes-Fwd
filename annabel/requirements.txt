@@ -1,0 +1,3 @@
+telethon
+supabase==2.15.3
+python-dotenv
